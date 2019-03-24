@@ -11,8 +11,8 @@ void setup(){
   
   strokeWeight(0.5);
   radius = 200;
-  modulus = 10;
-  table = 3.00;
+  modulus = 100;
+  table = 2.00;
   
   
 }
@@ -50,8 +50,9 @@ void algorithm() {
     alpha = k * ((2*PI) / 10.0);
     alpha = alpha % (2*PI);
     beta = result * ((2*PI) / 10.0);
-    beta = beta % (2*PI);
+    beta = beta;
     phi = beta - alpha;
+    phi = phi % (2*PI);
     eta = PI - (PI - phi) / 2;
     dist = sqrt(2 * (radius * radius) - (2 * (radius * radius)) * cos(phi));
     
