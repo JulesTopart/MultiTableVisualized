@@ -2,7 +2,7 @@ public class Turtle{
 
   
   public Turtle(){
-    heading = PI;
+    heading = PI/2;
     offX = 0;
     offY = 0;
     posX = width/2;
@@ -10,7 +10,7 @@ public class Turtle{
   };
   
   public Turtle(float x, float y){
-    heading = PI;
+    heading = PI/2;
     offX = x;
     offY = y;
     posX = width/2 + x;

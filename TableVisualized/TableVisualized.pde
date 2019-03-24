@@ -6,14 +6,13 @@ Turtle robot;
 
 float selectedPoint = 0.0;
 
-
 void setup(){
   size(600,600);
   
   strokeWeight(0.5);
   radius = 200;
-  modulus = 100;
-  table = 2.00;
+  modulus = 10;
+  table = 3.00;
   
   
 }
@@ -35,6 +34,8 @@ void draw(){
      table -= 0.01;
   } else {
   }
+  
+  if(table < 1) table = 1;
 };
 
 
@@ -47,7 +48,9 @@ void algorithm() {
   for (float k = 0.0; k < 10.0; k += 10.0/modulus) {
     result = k * table;
     alpha = k * ((2*PI) / 10.0);
+    alpha = alpha % (2*PI);
     beta = result * ((2*PI) / 10.0);
+    beta = beta % (2*PI);
     phi = beta - alpha;
     eta = PI - (PI - phi) / 2;
     dist = sqrt(2 * (radius * radius) - (2 * (radius * radius)) * cos(phi));
@@ -63,10 +66,10 @@ void algorithm() {
       text("table :", 10, 50);   text(table, 40,50);
       text("k :", 10,100);       text(k, 40,100);
       text("result :", 10,150);  text(result, 40,150);
-      text("alpha :", 10,200);   text(alpha, 40,200);
-      text("beta :", 10,250);    text(beta, 40,250);
-      text("phi :", 10,300);     text(phi, 40,300);
-      text("eta :", 10,350);     text(eta, 40,350);
+      text("alpha :", 10,200);   text(alpha * RAD_TO_DEG, 40,200);
+      text("beta :", 10,250);    text(beta * RAD_TO_DEG, 40,250);
+      text("phi :", 10,300);     text(phi * RAD_TO_DEG, 40,300);
+      text("eta :", 10,350);     text(eta * RAD_TO_DEG, 40,350);
       text("dist :", 10,400);    text(dist, 40,400);
     }
 
@@ -103,7 +106,7 @@ float calulateDebugPoint() {
   strokeWeight(0.5);
   textSize(10);
   
-  text("angle :", width - 70, 50);   text(angle, width - 40,50);
+  text("angle :", width - 70, 50);   text(angle*RAD_TO_DEG, width - 40,50);
   
   strokeWeight(2);
   line((width/2) + robot.offSetX() + cos(angle - (PI/2))*(radius), 
@@ -129,4 +132,5 @@ void mouseReleased(){
 void mouseWheel(MouseEvent event) {
   float e = event.getCount();
   modulus -= e;
+  if(modulus < 10) modulus = 10;
 }
