@@ -13,7 +13,7 @@ void setup(){
   strokeWeight(0.5);
   radius = 200;
   modulus = 100;
-  table = 1.00;
+  table = 2.00;
   
   
 }
@@ -95,6 +95,7 @@ float calulateDebugPoint() {
   if(angle < 0) angle += 2*PI;
   angle += (PI/2);
   angle = angle % (2*PI);
+  angle -= angle % ((2*PI)/modulus);
   
   fill(200);
   rect(width,25,width - 90,450);
@@ -123,4 +124,9 @@ void mousePressed(){
 
 void mouseReleased(){
     mouseState = false;
+}
+
+void mouseWheel(MouseEvent event) {
+  float e = event.getCount();
+  modulus -= e;
 }
