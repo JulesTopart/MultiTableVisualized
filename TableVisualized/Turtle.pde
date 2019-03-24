@@ -3,12 +3,16 @@ public class Turtle{
   
   public Turtle(){
     heading = PI;
+    offX = 0;
+    offY = 0;
     posX = width/2;
     posY = height/2;
   };
   
   public Turtle(float x, float y){
     heading = PI;
+    offX = x;
+    offY = y;
     posX = width/2 + x;
     posY = height/2 + y;
   };
@@ -44,8 +48,16 @@ public class Turtle{
   
   public void poserCrayon(){
     pen = true;
-  }  
+  }
   
-  private float heading, posX,posY;
+  public float offSetX(){
+    return offX;
+  }
+  
+  public float offSetY(){
+    return offY;
+  }
+  
+  private float heading, posX,posY, offX,offY;
   private boolean pen;
 };
